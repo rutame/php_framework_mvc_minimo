@@ -1,0 +1,53 @@
+<h3>La Vista de Los Posts</h3>
+<?php if(Session::accesoView('especial')): ?>
+<p><a href="<?php BASE_URL; ?>post/nuevo" class="btn btnmas">Agregar Post</a></p>
+<?php endif; ?>
+
+<?php 
+if(!empty($this->posts)): 
+
+    $resultado = $this->posts;?>
+    
+    <?php foreach ($resultado as $clave => $valores): $idPost = $valores['id'];?>
+    <article>
+
+        <header>
+            <h2><?php echo  $valores['titulo']; ?></h2>
+            
+            <time pubdate="<?php echo $valores['fechaPub'];?>">
+                <?php echo $valores['fechaPub'];?>
+            </time>
+           
+        </header>
+
+        <p>
+            <?php echo $valores['cuerpo']; ?>
+            <a href="<?php echo BASE_URL . 'post/ver/' . $idPost;?>">Leer Más</a><
+            /p>
+
+        <footer>
+            <p>Pedro Gabriel ha escrito <cite> <?php echo substr($valores['titulo'], 0,10);?></cite> 
+                el día <date><?php echo $valores['fechaPub'];?></date>
+            </p>
+        </footer>
+            <div class="opciones">
+            <a href="<?php echo BASE_URL . 'post/imprimir/' .$idPost; ?>" clas="btn">imprimir</a>
+            <?php  if(Session::accesoView('admin')): ?>
+            <a href="<?php echo BASE_URL . 'post/editar/' . $idPost; ?>">Editar Post</a>
+            <a href="<?php echo BASE_URL . 'post/eliminar/' . $idPost; ?>">Borrar Post</a>
+            <?php endif;?>
+            </div>
+        
+
+    </article>
+    <?php endforeach; ?>
+
+    <?php else: ?>
+        <strong>No hay posts!</strong>
+    <?php endif; ?>
+        
+
+
+
+
+

@@ -17,11 +17,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 ?>
+<article>
+    <header>
+        <h2>
+            <?php echo $this->datos['titulo']; ?>
+        </h2>
+    </header>
 
-<h2>Ver el Post número: <?php echo $this->datos['id']; ?></h2>
 
-<h2><?php echo $this->datos['titulo']; ?></h2>
 <p>
     <?php echo $this->datos['cuerpo']; ?>
 </p>
+<footer>
+    <p>
+        <?php echo "Autor: ". $this->datos['autor'];?> 
+        |
+        <?php echo "Fecha: ". $this->datos['fechaPub'];?>  
+    </p>
+</footer>
+</article>
 

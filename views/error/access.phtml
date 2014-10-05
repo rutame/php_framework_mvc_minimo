@@ -21,10 +21,11 @@ error_reporting(E_ALL);
 ?>
     <h2><?php if($this->mensaje) echo $this->mensaje; ?></h2>
     <p>&nbsp</p>
-    <a href="<?php echo BASE_URL; ?>">Ir a Inicio</a>
-    <a href="javascript:history.back();">Volver</a>
+    <a href="<?php echo BASE_URL; ?>" class="btn">Ir a Inicio</a>
+    <a href="javascript:history.back();" class="btn">Volver</a>
     
     <?php   if(!Session::get('autentificado')): ?>
-            <a href="<?php echo BASE_URL . 'login' ; ?>">Iniciar Sesión</a>    
+            <a href="<?php echo BASE_URL . 'login' ; ?>" class="btn">
+                Iniciar Sesión</a>    
     <?php   endif; ?>
 

@@ -46,7 +46,10 @@ class View {
                                     'id' => 'login',
                                     'titulo' => 'Cerrar Sesión',
                                     'enlace' => BASE_URL . 'login/cerrar'
-                                    )
+                                    ),
+                            array('id' => 'nuevo',
+                                    'titulo' => 'Publicar',
+                                    'enlace' => BASE_URL . 'post/nuevo')
                       );
         }
         else{

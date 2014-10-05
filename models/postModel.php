@@ -21,12 +21,21 @@ class PostModel extends Model{
         parent::__construct();
     }
     
-    public function getPosts()
+    public function getPosts($limit = NULL)
     {
         try {
+            if(empty($limit)):
             $post = $this->_db->query("SELECT "
-                    . "id, titulo, LEFT(cuerpo, 200)AS cuerpo, fechaPub "
-                    . "FROM posts ORDER BY fechapub DESC");
+                    . "id, titulo, LEFT(cuerpo, 200)AS cuerpo, fechaPub, autor "
+                    . "FROM posts ORDER BY fechapub DESC  ");
+            endif;
+            
+            if($limit && is_int($limit)):
+            $post = $this->_db->query("SELECT "
+                    . "id, titulo, LEFT(cuerpo, 200)AS cuerpo, fechaPub, autor "
+                    . "FROM posts ORDER BY fechapub DESC LIMIT $limit");    
+            endif;
+            
             return $post->fetchAll();   
         } 
         catch (Exception $exc) {
@@ -45,14 +54,15 @@ class PostModel extends Model{
 
     }
     
-    public function insertarPost($titulo, $cuerpo)
+    public function insertarPost($titulo, $cuerpo, $autor)
     {
-        $this->_db->prepare("INSERT INTO posts(titulo, cuerpo) "
-                . "VALUES (:titulo, :cuerpo)")
+        $this->_db->prepare("INSERT INTO posts(titulo, cuerpo, autor) "
+                . "VALUES (:titulo, :cuerpo, :autor)")
                 ->execute(
                         array(
                             ':titulo' => $titulo,
-                            ':cuerpo' => $cuerpo
+                            ':cuerpo' => $cuerpo,
+                            ':autor' => $autor
                             )   );
     }
     

@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-
+/*
 CREATE DATABASE aprendomvcdb2 CHARACTER SET utf8 collate utf8_general_ci;
 
 // Proporcionar privilegios al usuario

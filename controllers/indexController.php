@@ -21,14 +21,17 @@
 class IndexController extends Controller
 {
     public $_postPdf;
+    private $_posts;
 
-    
+
     public function __construct() {
         parent::__construct();
+        $this->_posts = $this->loadModel('post');
     }
 
     public function index()
     {
+        $this->_view->_posts = $this->_posts->getPosts(3);
         $this->_view->titulo = "Portada";
         $this->_view->renderizar('index');
     }

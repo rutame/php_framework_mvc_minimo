@@ -130,22 +130,32 @@ class registroController extends Controller
         $this->_view->renderizar('index', 'registro');
     }
     
-    public function activar($id, $codigo)
+    /**
+     * 
+     * @param type $id
+     * @param type $codigo
+     */
+    public function activar($activacion)
     {
-       // echo "Los parametros: id: ".  
-                $this->filtrarInt2($id) . 
-                " registro: ". $codigo;
-        
-        if($this->filtrarInt($id) || !$this->filtrarInt($codigo)){
+        $this->_view->titulo = "Activación";
+        if(is_array($activacion)){
+            $id = $this->filtrarInt($activacion[0]);
+            $codigo = $this->filtrarInt($activacion[1]);
+            
+            //echo "Id: ".  $this->filtrarInt($id) . " codigo: ".  $this->filtrarInt($codigo);exit();
+     
+        }
+        else{
+            echo "Faltan parámetros!";
+            exit();
+        }
+        if($id || !$codigo){
             $this->_view->error = "Esta cuenta no existe";
             $this->_view->renderizar('activar', 'registro');
             exit();
         }
         
-        $row = $this->_registro->getUsuario(
-                $this->filtrarInt($id),
-                $this->filtrarInt($codigo)
-                );
+        $row = $this->_registro->getUsuario($id, $codigo);
         
         if(!$row){
             $this->_view->error = "Esta cuenta no existe";
@@ -159,7 +169,7 @@ class registroController extends Controller
             exit();
         }
         
-        $this->_registro->activarUsuario($this->filtrarInt($id),  $this->filtrarInt($codigo));
+        $this->_registro->activarUsuario($id, $codigo);
         
         if($row['estado'] == 0){
             $this->_view->error = "Error al activar la cuenta, por favor intentelo más tarde.";

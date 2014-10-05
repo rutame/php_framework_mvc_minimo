@@ -33,14 +33,10 @@ class registroModel extends Model
      */
     public function verificarUsuario($usuario)
     {
-        /*
         $id = $this->_db->prepare(
                 "SELECT id, codigo FROM usuarios WHERE usuario = ':usuario' ");
         $id->bindParam(':usuario', $usuario);
-        $id->execute(); */
-        
-        $id = $this->_db->query(
-                "SELECT id, codigo FROM usuarios WHERE usuario = '$usuario' ");
+        $id->execute();
         
         return $id->fetch();
     }
@@ -106,9 +102,13 @@ class registroModel extends Model
     
     public function activarUsuario($id, $codigo)
     {
-        $this->_db->query(
-                "UPDATE usuarios SET estado = 1 "
-                . "WHERE id = '$id' AND codigo = '$codigo' ");
-             
+        $this->_db->prepare(
+                "UPDATE usuarios SET estado = 1 WHERE id = :id AND codigo = :codigo ")
+                ->execute(array(
+                    ':id' => $id,
+                    ':codigo' => $codigo 
+                ));
+        
+        echo "Hehco bbalala";
     }
 }

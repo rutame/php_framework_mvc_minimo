@@ -91,7 +91,7 @@ class Session
     // Colocamos los diferentes niveles de acceso
     public static function getLevel($level)
     {
-        $role = array('admin' => 3,'especial' => 2,'usuario' => 1);
+        $role = array('administrador' => 3,'especial' => 2,'usuario' => 1);
         
         if(!array_key_exists($level, $role)){
             throw new Exception("Error de acceso");

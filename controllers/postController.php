@@ -41,9 +41,10 @@ class PostController extends Controller
         $this->_view->titulo = "Todos los Posts";
         $this->_view->renderizar('index','post');
     }
+    
     public function nuevo()
     {
-        Session::accesoEstricto(array('especial',false));
+        Session::accesoEstricto(array('administrador',false));
         
         $this->_view->titulo = "Nuevo Post";
         
@@ -68,7 +69,8 @@ class PostController extends Controller
 
             $this->_post->insertarPost(
                         $this->getPostParam('titulo'),
-                        $this->getPostParam('cuerpo')        
+                        $this->getPostParam('cuerpo'),
+                        Session::get('nombre')
                     );
                     $this->redireccionar('post');
         }
@@ -93,7 +95,7 @@ class PostController extends Controller
     // Método editar
     public function editar($id)
     {
-        Session::acceso('admin');
+        Session::acceso('administrador');
         if(!$this->sacaId($id)){
             $this->redireccionar('post');
         }

@@ -22,17 +22,20 @@ if(!empty($this->posts)):
 
         <p>
             <?php echo $valores['cuerpo']; ?>
-            <a href="<?php echo BASE_URL . 'post/ver/' . $idPost;?>">Leer Más</a><
-            /p>
+            <a href="<?php echo BASE_URL . 'post/ver/' . $idPost;?>">Leer Más</a>
+        </p>    
 
         <footer>
-            <p>Pedro Gabriel ha escrito <cite> <?php echo substr($valores['titulo'], 0,10);?></cite> 
+            <p>
+                Pedro Gabriel ha escrito <cite> 
+                <?php echo substr($valores['titulo'], 0,10);?></cite> 
                 el día <date><?php echo $valores['fechaPub'];?></date>
             </p>
         </footer>
             <div class="opciones">
-            <a href="<?php echo BASE_URL . 'post/imprimir/' .$idPost; ?>" clas="btn">imprimir</a>
-            <?php  if(Session::accesoView('admin')): ?>
+            <a href="<?php echo BASE_URL . 'post/imprimir/' .$idPost; ?>" 
+               class="btn">imprimir</a>
+            <?php  if(Session::accesoView('administrador')): ?>
             <a href="<?php echo BASE_URL . 'post/editar/' . $idPost; ?>">Editar Post</a>
             <a href="<?php echo BASE_URL . 'post/eliminar/' . $idPost; ?>">Borrar Post</a>
             <?php endif;?>

@@ -205,8 +205,9 @@ header h1{
     font-size: 48px;
     text-shadow: -1px -1px #ccc, 1px 1px #ccc;
     float:left;
-    width:480px;
-    
+}
+.portada{
+    color:#09f;
 }
 header h2, header h3{
     color:#ddd;
@@ -231,8 +232,8 @@ footer p{
 /* formularios */
 #form1{
     width:300px;
-    float:left;
-    margin:20px 10px;
+    position: relative;
+    margin:20px auto;
 }
 .form{
     padding:15px;

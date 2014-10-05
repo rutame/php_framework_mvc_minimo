@@ -1,4 +1,27 @@
-<h3>Bienvenido a La Vista de Index.phtml</h3>
+<h2>Bienvenido a <?php echo $this->titulo;?></h2>
+    <?php //echo Session::get('nombre'); ?>
+<?php foreach ($this->_posts as $keyArray => $array): ?>
+<a href="post/ver/<?php echo $array['id'];?>">
+<article>
+    <header>
+    <h1 class="portada">
+        <?php echo $array['titulo'];?>
+    </h1>
+    </header>
+    <p>
+        <?php echo $array['cuerpo']; ?>
+    </p>
+    <footer>
+    <p>
+        <date><?php echo $array['fechaPub'];?></date>
+        <?php echo $array['autor'];?>
+        ha escrito:
+        <cite><?php echo $array['titulo'];?></cite> 
+    </p>
+    </footer>
+</article>
+</a>
+<?php endforeach; ?>
 
 
 
